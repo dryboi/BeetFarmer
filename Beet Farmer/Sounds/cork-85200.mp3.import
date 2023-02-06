@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cork-85200.mp3-1db431c04acb52c04652ab03e16e58d1.mp3str"
+
+[deps]
+
+source_file="res://Sounds/cork-85200.mp3"
+dest_files=[ "res://.import/cork-85200.mp3-1db431c04acb52c04652ab03e16e58d1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bushhitwav-14661.mp3-7eb98871ee8f46dc50a12a21c9c1be88.mp3str"
+
+[deps]
+
+source_file="res://Sounds/bushhitwav-14661.mp3"
+dest_files=[ "res://.import/bushhitwav-14661.mp3-7eb98871ee8f46dc50a12a21c9c1be88.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

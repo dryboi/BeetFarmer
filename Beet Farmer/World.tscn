@@ -1,0 +1,140 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://miss.gd" type="Script" id=2]
+[ext_resource path="res://Background/floor.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/turnipbeet.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Background/highhills.png" type="Texture" id=5]
+[ext_resource path="res://Background/lowhills.png" type="Texture" id=6]
+[ext_resource path="res://Background/sky.png" type="Texture" id=7]
+[ext_resource path="res://World.gd" type="Script" id=8]
+[ext_resource path="res://Button4.gd" type="Script" id=9]
+[ext_resource path="res://MatchupPro.otf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = ExtResource( 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 35.25 )
+
+[sub_resource type="TileSet" id=1]
+0/name = "floor.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( -1, 41, 302, 59 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 492, 722 )
+
+[node name="Button" type="Button" parent="Player"]
+margin_left = -121.0
+margin_top = -176.0
+margin_right = -85.0
+margin_bottom = -163.0
+custom_fonts/font = SubResource( 3 )
+text = "Restart"
+script = ExtResource( 9 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2( 2.75, -113.25 )
+scale = Vector2( 0.25, 0.25 )
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 4, -64 )
+scale = Vector2( 0.25, 0.25 )
+current = true
+
+[node name="miss" type="Area2D" parent="Player"]
+position = Vector2( -123, -180.5 )
+scale = Vector2( 0.25, 0.25 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/miss"]
+position = Vector2( 54, 726 )
+shape = SubResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 501, 700 )
+scale = Vector2( 4, 4 )
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 65533, 0, 0, 1, 0, 0, 5, 0, 0, 9, 0, 0, 13, 0, 0, 17, 0, 0, 21, 0, 0, 25, 0, 0, 29, 0, 0, 33, 0, 0, 37, 0, 0, 41, 0, 0, 45, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scale = Vector2( 4, 4 )
+transform = Transform2D( 4, 0, 0, 4, 0, 0 )
+
+[node name="Sky" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_scale = Vector2( 0.12, 1 )
+motion_mirroring = Vector2( 300, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/Sky"]
+position = Vector2( 125, 150 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HighHill" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 300, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/HighHill"]
+position = Vector2( 125, 150 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LowHill" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 300, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/ParallaxBackground/LowHill"]
+position = Vector2( 125, 150 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Floor" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_mirroring = Vector2( 300, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TurnipTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Player/Button" to="Player/Button" method="_on_Button_pressed"]
+[connection signal="timeout" from="TurnipTimer" to="." method="_on_TurnipTimer_timeout"]

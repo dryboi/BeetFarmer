@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/turnipbeet.mp3-4e931616d4773c409c9f0f8b3977dc85.mp3str"
+
+[deps]
+
+source_file="res://Sounds/turnipbeet.mp3"
+dest_files=[ "res://.import/turnipbeet.mp3-4e931616d4773c409c9f0f8b3977dc85.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
